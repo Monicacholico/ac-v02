@@ -16,17 +16,18 @@ const Fetcher =  () => {
         const dealsApi = 'https://cors-anywhere.herokuapp.com/https://sahmed93846.activehosted.com/api/3/deals?orders[title]=ASC&orders[value]=ASC&orders[cdate]=ASC&orders[contact_name]=ASC&orders[contact_orgname]=ASC&orders[next-action]=ASC';
         const tagsApi = 'https://cors-anywhere.herokuapp.com/https://sahmed93846.activehosted.com/api/3/tags';
         const options = {
-            "Api-Token": `${API_KEY}`,
+            headers : {
+                "Api-Token": `${API_KEY}`,
+            }
         }
         const getUserName = axios.get(usersApi, options);
         const getDeals = axios.get(dealsApi, options);
         const getTags = axios.get(tagsApi, options);
         axios.all([getUserName, getDeals, getTags]).then(
             axios.spread((...allData) => {
-                const allDataUsers = allData[0];
-                const allDataDeals = allData[1];
-                const allDataTags = allData[2];
-
+                const allDataUsers = allData[0].data.contacts;
+                const allDataDeals = allData[1].data.deals;
+                const allDataTags = allData[2].data.tags;
                 console.log(allDataUsers)
                 console.log(allDataDeals)
                 console.log(allDataTags)
@@ -37,8 +38,9 @@ const Fetcher =  () => {
 
     useEffect(() => {
         fetchData()
-    },[]);
+    }, [])
 
+    // const {allDataUsers, allDataDeals, allDataTags} = this.state;
     // async fetchPost = (path) => {
     //     const url =`https://cors-anywhere.herokuapp.com/https://sahmed93846.activehosted.com/api/3/${path}`;
     //     const options = {
@@ -63,12 +65,18 @@ const Fetcher =  () => {
     // }
 
     return (
-        <tr className="table-row">
-            I'm a Row
-            <td className="">I'm a cell</td>
-            <td className="">I'm a cell</td>
-            <td className="">I'm a cell</td>
-        </tr>
+        <tbody>
+            the table will go headers
+            {/* {Object.keys(allDataUsers.map(user => {
+                const {firstName, lastName} = user;
+                return(
+                <tr>
+                    <td>{firstName} {lastName}</td>
+                </tr>
+                )
+            }))} */}
+        </tbody>
+
     )
 
 

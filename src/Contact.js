@@ -10,13 +10,13 @@ class Contact extends Component {
     };
     fetchUsers() {
         const url = 'https://cors-anywhere.herokuapp.com/https://sahmed93846.activehosted.com/api/3/contacts';
-    const options = {
-        method: 'GET',
-        headers: {
-            "Api-Token": `${API_KEY}`,
-            "Accept": "application/json"
-            }
-        };
+        const options = {
+            method: 'GET',
+            headers: {
+                "Api-Token": `${API_KEY}`,
+                "Accept": "application/json"
+                }
+            };
       return fetch(url, options)
         .then(response => response.json())
         .then(data => this.setState({

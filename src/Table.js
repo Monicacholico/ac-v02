@@ -6,12 +6,21 @@ import Tag from './Tag';
 import Location from './Location';
 import TotalValue from './TotalValue';
 import Row from './Row';
+import Td from './Td';
 import './App.css';
 import Fetcher from './Fetcher';
+import AnotherRow from './AnotherRow';
+import TdTotalValue from './TdTotalValue';
+import TdDeals from './TdDeals';
+import TdTag from './TdTag';
 
 
 class Table extends Component {
+
     render() {
+
+        // const { firstName, lastName} = user;
+        // console.log(users);
         return (
             <section className="section">
                 <table className="legend">
@@ -34,9 +43,16 @@ class Table extends Component {
                     </tr> */}
                     {/* <Tr/> */}
                     <tr>
-                    <Row/>
+                    {/* <Row/> */}
                     </tr>
-                    {/* <Fetcher/> */}
+                    <Fetcher/>
+                    {/* <AnotherRow/> */}
+                    {/* <tr>
+                        <Td userName={'Monica Lopez'}/>
+                        <TdTotalValue/>
+                        <TdDeals/>
+                        <TdTag/>
+                    </tr> */}
                 </tbody>
                 </table>
             </section>

@@ -91,29 +91,31 @@ class Row extends Component {
     render() {
         const { isLoading, users, totalValue, tags, deals, error } = this.state;
         console.log(this.state.deals);
-        // const combineData = [...this.state.users, ...this.state.totalValue, ...this.state.deals, ...this.state.tags];
-        // console.log(combineData);
+        const combineData = [...this.state.users, ...this.state.totalValue, ...this.state.deals, ...this.state.tags];
+        console.log(combineData);
         let numberWithCommas = function numberWithCommas(x) {
             var parts = x.toString().split(".");
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             return parts.join(".");
         };
 
-        // const allData = combineData.map( data => {
-        //     return (
-        //         <tr className="table-row">
-        //             <td>{data.firstName} {data.lastName}</td>
-        //             <td>{data.accountActivity} {data.value} {data.currency}</td>
-        //         </tr>
-        //     )
-        // });
+        const allData = combineData.map( data => {
+            return (
+                <tr className="table-row">
+                    <td>{data.firstName} {data.lastName}</td>
+                    <td>{data.accountActivity} {data.value} {data.currency}</td>
+                    <td>{data.stage}</td>
+                    <td>{data.tag}</td>
+                </tr>
+            )
+        });
 
 
         const userCell = users.map(user => {
                 const {firstName, lastName} = user;
                 console.log(user);
                 return (
-                    <td>{firstName} {lastName}</td>
+                    <p>{firstName} {lastName}</p>
                 )
             })
 
@@ -122,38 +124,37 @@ class Row extends Component {
                 const {activityAccount, value, currency} = deal;
                 console.log(deal);
                 return (
-                    <td>{activityAccount} ${value} {currency}</td>
+                    <p>{activityAccount} ${value} {currency}</p>
                 )
             })
         const dealsCell =
             deals.map(deal => {
                 const { stage } = deal;
                 return (
-                    <td>{stage}</td>
+                    <p>{stage}</p>
                 )
             })
         const tagCell =
             tags.map( t => {
                 const {tag} = t;
                 return (
-                    <td>{tag}</td>
+                    <p>{tag}</p>
                 )
             })
         return (
             <React.Fragment>
             {error ? <p>{error.message}</p> : null}
             {!isLoading ? (
-               <tr>
-                   I am a Row
-                   {userCell}
-                   {totalValueCell}
-                   {dealsCell}
-                   {tagCell}
-               </tr>
+            //    <td>
+            //        <td>{userCell}</td>
+            //        <td>{totalValueCell}</td>
+            //        <td>{dealsCell}</td>
+            //        <td>{tagCell}</td>
+            //    </td>
 
-                // <tbody>
-                //     {allData}
-                // </tbody>
+                <tbody>
+                    {allData}
+                </tbody>
             ) : (
                 <td><p>Loading ...</p></td>
             )}
