@@ -7,6 +7,7 @@ import Location from './Location';
 import TotalValue from './TotalValue';
 import Row from './Row';
 import './App.css';
+import Fetcher from './Fetcher';
 
 
 class Table extends Component {
@@ -32,7 +33,10 @@ class Table extends Component {
                         <td className=""><Location/></td>
                     </tr> */}
                     {/* <Tr/> */}
+                    <tr>
                     <Row/>
+                    </tr>
+                    {/* <Fetcher/> */}
                 </tbody>
                 </table>
             </section>
