@@ -31,6 +31,11 @@ const Fetcher =  () => {
                 console.log(allDataUsers)
                 console.log(allDataDeals)
                 console.log(allDataTags)
+
+                setUserName(allDataUsers);
+                setTotalValue(allDataDeals);
+                setDeal(allDataDeals);
+                setTag(allDataTags);
             })
 
         )
