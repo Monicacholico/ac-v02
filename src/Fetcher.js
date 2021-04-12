@@ -1,6 +1,7 @@
 import React, {Component, useState, useEffect} from 'react';
 import API_KEY from './credentials';
 import Deal from './Deal';
+import TdFetcher from './TdFetcher';
 import axios from 'axios';
 
 
@@ -26,16 +27,25 @@ const Fetcher =  () => {
         axios.all([getUserName, getDeals, getTags]).then(
             axios.spread((...allData) => {
                 const allDataUsers = allData[0].data.contacts;
+                // const allDataUsers2 = allData[0].data.contacts.lastName;
                 const allDataDeals = allData[1].data.deals;
                 const allDataTags = allData[2].data.tags;
+                const user = Object.keys(allDataUsers.map(key => (
+                    key.firsName + key.lastName
+
+                )));
                 console.log(allDataUsers)
                 console.log(allDataDeals)
                 console.log(allDataTags)
 
-                setUserName(allDataUsers);
+                setUserName(user);
                 setTotalValue(allDataDeals);
                 setDeal(allDataDeals);
                 setTag(allDataTags);
+
+                console.log(allDataUsers)
+                console.log(allDataDeals)
+                console.log(allDataTags)
             })
 
         )
@@ -68,18 +78,14 @@ const Fetcher =  () => {
     //         this.setState({...this.state, isFetching: false})
     //     }
     // }
-
+    // console.log(allDataUsers)
+    // const {allDataUsers, allDataDeals, allDataTags} = this.state;
     return (
         <tbody>
             the table will go headers
-            {/* {Object.keys(allDataUsers.map(user => {
-                const {firstName, lastName} = user;
-                return(
-                <tr>
-                    <td>{firstName} {lastName}</td>
-                </tr>
-                )
-            }))} */}
+
+            {userName}
+
         </tbody>
 
     )
